@@ -1,0 +1,45 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+
+# Environment variables
+.env
+
+# Log files
+logs/
+*.log
+
+# SSL certificates
+ssl_certs/
+
+# Result files
+results/
+e2e_test_report.md
+
+# Cache
+.cache/
+cache/
+__pycache__/
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+test_cache/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
