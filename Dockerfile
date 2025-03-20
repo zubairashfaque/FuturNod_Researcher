@@ -36,4 +36,4 @@ EXPOSE 8000
 EXPOSE 8443
 
 # Use the SSL certificates for HTTPS
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--ssl-keyfile", "/app/certs/server.key", "--ssl-certfile", "/app/certs/server.crt"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8383", "--ssl-keyfile", "/app/certs/server.key", "--ssl-certfile", "/app/certs/server.crt"]
