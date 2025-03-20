@@ -32,8 +32,8 @@ RUN chown -R appuser:appuser /app
 USER appuser
 
 # Expose both HTTP and HTTPS ports
-EXPOSE 8000
-EXPOSE 8443
+#EXPOSE 8000
+#EXPOSE 8383
 
 # Use the SSL certificates for HTTPS
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8383", "--ssl-keyfile", "/app/certs/server.key", "--ssl-certfile", "/app/certs/server.crt"]
