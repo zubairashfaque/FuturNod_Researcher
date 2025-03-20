@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "futurnod-researcher"
+version = "1.0.0"
+description = "Modular, optimized, and secure API for AI-powered research using GPT-Researcher and Tavily API"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "FuturNod Team", email = "info@futurnod.com"},
+]
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn>=0.23.2",
+    "pydantic>=2.4.2",
+    "python-dotenv>=1.0.0",
+    "python-jose>=3.3.0",
+    "passlib>=1.7.4",
+    "bcrypt>=4.0.1",
+    "cryptography>=41.0.4",
+    "httpx>=0.25.0",
+    "nest-asyncio>=1.5.8",
+    "redis>=5.0.1",
+    "gpt-researcher>=0.0.5",
+    "tavily-python>=0.2.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.2",
+    "pytest-asyncio>=0.21.1",
+    "pytest-cov>=4.1.0",
+    "black>=23.9.1",
+    "isort>=5.12.0",
+    "mypy>=1.5.1",
+    "ruff>=0.1.0",
+]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["api", "core", "models"]
