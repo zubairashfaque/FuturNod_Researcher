@@ -90,7 +90,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=8000,  # Standard HTTPS port is 443, but 8443 is common for development
+        port=8383,  # Standard HTTPS port is 443, but 8443 is common for development
         ssl_certfile="./certs/server.crt",
         ssl_keyfile="./certs/server.key",
         reload=True

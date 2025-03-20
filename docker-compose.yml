@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: futurnod-researcher-api
+    restart: always
+    ports:
+      - "8383:8383"  # HTTP port (with SSL)
+      #- "8443:8443"  # HTTPS port for future use
+    volumes:
+      - ./certs:/app/certs  # Mount SSL certificates
+      - ./results:/app/results  # Mount results directory for persistence
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-k", "https://localhost:8383/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s

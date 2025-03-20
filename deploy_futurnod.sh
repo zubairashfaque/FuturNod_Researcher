@@ -47,7 +47,7 @@ docker build -t $CONTAINER_NAME .
 
 # Run the Docker container with necessary configurations
 echo "Deploying Docker container: $CONTAINER_NAME..."
-docker run -d -p 8000:8000 -v $(pwd)/certs:/app/certs --env-file .env --restart always --name $CONTAINER_NAME $CONTAINER_NAME
+docker run -d -p 8383:8383 -v $(pwd)/certs:/app/certs --env-file .env --restart always --name $CONTAINER_NAME $CONTAINER_NAME
 
 # Check running containers again
 echo "Checking Docker container status after deployment..."
@@ -63,6 +63,6 @@ sleep 20
 
 # Check the API health status
 echo "Checking API health status..."
-curl -k https://localhost:8000/health
+curl -k https://localhost:8383/health
 
 echo -e "\nFor accessing without the -k flag (ignore SSL warnings), add the self-signed certificate to your trusted certificates."
