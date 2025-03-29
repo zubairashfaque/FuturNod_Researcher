@@ -8,10 +8,11 @@ class ResearchResponse(BaseModel):
     """Model for research response data"""
     query: str = Field(..., description="Original research query")
     report_type: str = Field(..., description="Type of report generated")
+    tone: Optional[str] = Field("objective", description="Tone of the research report")
     report: str = Field(..., description="Research report content")
     research_costs: float = Field(..., description="Cost of conducting the research")
-    #research_images: Optional[List[str]] = Field(None, description="List of research images")
-    #research_sources: Optional[List[dict]] = Field(None, description="List of research sources")
+    research_images: Optional[List[str]] = Field(None, description="List of research images")
+    research_sources: Optional[List[dict]] = Field(None, description="List of research sources")
     completed_at: datetime = Field(default_factory=datetime.now, description="When the research was completed")
     report_id: str = Field(..., description="Unique ID for the research report")
 

@@ -60,13 +60,14 @@ async def conduct_research(
         current_user: User = Depends(get_current_active_user)
 ):
     """
-    Conduct research based on the provided query and report type
+    Conduct research based on the provided query, report type, and tone
     """
     try:
         # Conduct research
         result = await Researcher.conduct_research(
             query=request.query,
-            report_type=request.report_type
+            report_type=request.report_type,
+            tone=request.tone
         )
 
         return result

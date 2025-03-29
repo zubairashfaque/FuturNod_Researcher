@@ -23,7 +23,8 @@ class Researcher:
     @staticmethod
     async def _conduct_research(
             query: str,
-            report_type: str
+            report_type: str,
+            tone: str = "objective"
     ) -> Tuple[str, Dict[str, Any], float, List[str], List[Dict[str, Any]]]:
         """
         Conduct research using GPT-Researcher
@@ -31,6 +32,7 @@ class Researcher:
         Args:
             query: Research query
             report_type: Type of report to generate
+            tone: Tone of the research report
 
         Returns:
             Tuple of (report, research_context, costs, images, sources)
@@ -42,8 +44,9 @@ class Researcher:
                 logger.error("OpenAI API key is not set")
                 raise ValueError("OpenAI API key is not set")
 
-            # Create the researcher instance
-            researcher = GPTResearcher(query, report_type)
+            # Create the researcher instance with three arguments: query, report_type, and tone
+            # This assumes GPTResearcher accepts these three positional arguments
+            researcher = GPTResearcher(query, report_type, tone)
 
             # Conduct research
             research_result = await researcher.conduct_research()
@@ -67,7 +70,8 @@ class Researcher:
     @cached()  # Apply caching to optimize repeated research requests
     async def conduct_research(
             query: str,
-            report_type: str = "research_report"
+            report_type: str = "research_report",
+            tone: str = "objective"
     ) -> Dict[str, Any]:
         """
         Conduct research and return results
@@ -75,6 +79,7 @@ class Researcher:
         Args:
             query: Research query
             report_type: Type of report to generate
+            tone: Tone of the research report
 
         Returns:
             Research results dictionary
@@ -86,16 +91,18 @@ class Researcher:
         report_id = str(uuid.uuid4())
 
         # Conduct research
-        logger.info(f"Starting research for query: {sanitized_query}")
+        logger.info(f"Starting research for query: {sanitized_query} with tone: {tone}")
         report, research_context, research_costs, research_images, research_sources = await Researcher._conduct_research(
             sanitized_query,
-            report_type
+            report_type,
+            tone
         )
 
         # Prepare response data
         research_result = {
             "query": sanitized_query,
             "report_type": report_type,
+            "tone": tone,
             "report": report,
             "research_costs": research_costs,
             "research_images": research_images,
